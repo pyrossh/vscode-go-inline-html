@@ -3,8 +3,8 @@
   "injectionSelector": "L:source -comment -string",
   "patterns": [
     {
-      "name": "meta.embedded.block.sql",
-      "begin": "(`)(--sql)\n",
+      "name": "meta.embedded.block.html",
+      "begin": "\\((`)\n",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.string.begin.go"
@@ -13,7 +13,7 @@
           "name": "punctuation.definition.comment.go"
         }
       },
-      "end": "(`)",
+      "end": "\\)(`)",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.go"
@@ -21,10 +21,10 @@
       },
       "patterns": [
         {
-          "include": "source.sql"
+          "include": "text.html.basic"
         }
       ]
     }
   ],
-  "scopeName": "sql-string.injection"
+  "scopeName": "html-string.injection"
 }

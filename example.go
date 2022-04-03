@@ -1,10 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
+
+func Html(s string) string {
+	return s
+}
 
 func main() {
-	sql := `--sql
-		SELECT * FROM users;
-	`
-	fmt.Println(sql)
+	res := Html(`
+		<h1>123</h1>
+	`)
+	fmt.Println(res)
 }

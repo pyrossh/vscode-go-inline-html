@@ -1,17 +1,17 @@
 {
-  "name": "vscode-go-inline-sql",
-  "displayName": "Inline SQL for go",
+  "name": "vscode-go-inline-html",
+  "displayName": "Inline HTML for go",
   "icon": "images/logo.png",
-  "description": "Syntax highlighting for inline sql in go",
+  "description": "Syntax highlighting for inline html in go",
   "version": "0.1.2",
   "license": "MIT",
-  "publisher": "jhnj",
+  "publisher": "pyros2097",
   "engines": {
     "vscode": "^1.53.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jhnj/vscode-go-inline-sql.git"
+    "url": "https://github.com/pyros2097/vscode-go-inline-html.git"
   },
   "categories": [
     "Programming Languages"
@@ -19,13 +19,13 @@
   "contributes": {
     "grammars": [
       {
-        "path": "./syntaxes/go-sql.json",
-        "scopeName": "sql-string.injection",
+        "path": "./syntaxes/go-html.json",
+        "scopeName": "html-string.injection",
         "injectTo": [
           "source.go"
         ],
         "embeddedLanguages": {
-          "meta.embedded.block.sql": "sql"
+          "meta.embedded.block.html": "html"
         }
       }
     ]
