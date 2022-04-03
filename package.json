@@ -1,13 +1,12 @@
 {
   "name": "vscode-go-inline-html",
   "displayName": "Inline HTML for go",
-  "icon": "images/logo.png",
   "description": "Syntax highlighting for inline html in go",
-  "version": "0.1.2",
+  "version": "0.0.1",
   "license": "MIT",
   "publisher": "pyros2097",
   "engines": {
-    "vscode": "^1.53.0"
+    "vscode": "^1.65.0"
   },
   "repository": {
     "type": "git",
