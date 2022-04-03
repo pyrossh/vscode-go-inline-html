@@ -13,7 +13,7 @@
           "name": "punctuation.definition.comment.go"
         }
       },
-      "end": "\\)(`)",
+      "end": "(`)\\)",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.go"
@@ -22,6 +22,9 @@
       "patterns": [
         {
           "include": "text.html.basic"
+        },
+        {
+          "include": "text.html.handlebars"
         }
       ]
     }
