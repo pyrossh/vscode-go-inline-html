@@ -1,10 +1,10 @@
-# vscode-go-inline-sql
-Syntax highlighting for inline sql in go.
+# vscode-go-inline-html
+Syntax highlighting for inline html in go.
 
-Raw string literals that start with `--sql\n` will be highlighted as sql.
+Raw string literals within paranthesis,
 
-```go
-sql := `--sql
-	SELECT * FROM users;
-`
-```
+<img width="1169" alt="Screen Shot 2022-04-03 at 12 03 17 PM" src="https://user-images.githubusercontent.com/1687946/161415062-792ac751-2588-4602-b4b6-83fd5e805b09.png">
+
+## TODO:
+match with `Html` function.
+
