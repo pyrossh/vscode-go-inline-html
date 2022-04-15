@@ -4,9 +4,30 @@ import (
 	"fmt"
 )
 
+type M map[string]interface{}
+
+type Todo struct {
+	ID string
+}
+
 func Html(s string) string {
 	return s
 }
+
+func Css(s string) string {
+	return s
+}
+
+var _ = Css(`
+	body {
+		background: yellow;
+	}
+
+	.content {
+		font-size: 24px;
+		margin: 12px;
+	}
+`)
 
 func main() {
 	res := Html(`

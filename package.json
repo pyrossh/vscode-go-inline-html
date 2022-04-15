@@ -24,7 +24,8 @@
           "source.go"
         ],
         "embeddedLanguages": {
-          "meta.embedded.block.html": "html"
+          "meta.embedded.block.html": "html",
+          "meta.embedded.block.css": "css"
         }
       }
     ]

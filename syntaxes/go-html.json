@@ -4,19 +4,25 @@
   "patterns": [
     {
       "name": "meta.embedded.block.html",
-      "begin": "\\((`)\n",
+      "begin": "(Html)\\((`)\n",
       "beginCaptures": {
         "1": {
-          "name": "punctuation.definition.string.begin.go"
+          "name": "support.function.go"
         },
         "2": {
-          "name": "punctuation.definition.comment.go"
+          "name": "punctuation.definition.begin.bracket.round.go"
+        },
+        "3": {
+          "name": "punctuation.definition.string.begin.go"
         }
       },
       "end": "(`)\\)",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.string.end.go"
+        },
+        "2": {
+          "name": "punctuation.definition.end.bracket.round.goo"
         }
       },
       "patterns": [
@@ -25,6 +31,35 @@
         },
         {
           "include": "text.html.handlebars"
+        }
+      ]
+    },
+    {
+      "name": "meta.embedded.block.css",
+      "begin": "(Css)\\((`)\n",
+      "beginCaptures": {
+        "1": {
+          "name": "support.function.go"
+        },
+        "2": {
+          "name": "punctuation.definition.begin.bracket.round.go"
+        },
+        "3": {
+          "name": "punctuation.definition.string.begin.go"
+        }
+      },
+      "end": "(`)\\)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.end.go"
+        },
+        "2": {
+          "name": "punctuation.definition.end.bracket.round.goo"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.css"
         }
       ]
     }
