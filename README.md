@@ -1,5 +1,5 @@
 # vscode-go-inline-html
-Syntax highlighting for inline html in go.
+Syntax highlighting for inline html & css in go.
 
 Raw string literals within paranthesis,
 
