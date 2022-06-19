@@ -4,7 +4,7 @@
   "patterns": [
     {
       "name": "meta.embedded.block.html",
-      "begin": "(Html)\\((`)\n",
+      "begin": "(Render)\\((`)\n",
       "beginCaptures": {
         "1": {
           "name": "support.function.go"
@@ -27,10 +27,7 @@
       },
       "patterns": [
         {
-          "include": "text.html.basic"
-        },
-        {
-          "include": "text.html.handlebars"
+          "include": "#jsx"
         }
       ]
     },
@@ -64,5 +61,309 @@
       ]
     }
   ],
+  "repository": {
+    "jsx": {
+      "patterns": [
+        {
+          "include": "#jsx-tag-without-attributes-in-expression"
+        },
+        {
+          "include": "#jsx-tag-in-expression"
+        }
+      ]
+    },
+    "jsx-tag-without-attributes-in-expression": {
+      "begin": "(?<!\\+\\+|--)(?<=[({\\[,?=>:*]|&&|\\|\\||\\?|\\*\\/|^await|[^\\._$[:alnum:]]await|^return|[^\\._$[:alnum:]]return|^default|[^\\._$[:alnum:]]default|^yield|[^\\._$[:alnum:]]yield|^)\\s*(?=(<)\\s*(?:([_$[:alpha:]][-_$[:alnum:].]*)(?<!\\.|-)(:))?((?:[a-z][a-z0-9]*|([_$[:alpha:]][-_$[:alnum:].]*))(?<!\\.|-))?\\s*(>))",
+      "end": "(?!(<)\\s*(?:([_$[:alpha:]][-_$[:alnum:].]*)(?<!\\.|-)(:))?((?:[a-z][a-z0-9]*|([_$[:alpha:]][-_$[:alnum:].]*))(?<!\\.|-))?\\s*(>))",
+      "patterns": [
+        {
+          "include": "#jsx-tag-without-attributes"
+        }
+      ]
+    },
+    "jsx-tag-without-attributes": {
+      "name": "meta.tag.without-attributes.js",
+      "begin": "(<)\\s*(?:([_$[:alpha:]][-_$[:alnum:].]*)(?<!\\.|-)(:))?((?:[a-z][a-z0-9]*|([_$[:alpha:]][-_$[:alnum:].]*))(?<!\\.|-))?\\s*(>)",
+      "end": "(</)\\s*(?:([_$[:alpha:]][-_$[:alnum:].]*)(?<!\\.|-)(:))?((?:[a-z][a-z0-9]*|([_$[:alpha:]][-_$[:alnum:].]*))(?<!\\.|-))?\\s*(>)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.js"
+        },
+        "2": {
+          "name": "entity.name.tag.namespace.js"
+        },
+        "3": {
+          "name": "punctuation.separator.namespace.js"
+        },
+        "4": {
+          "name": "entity.name.tag.js"
+        },
+        "5": {
+          "name": "support.class.component.js"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.js"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.js"
+        },
+        "2": {
+          "name": "entity.name.tag.namespace.js"
+        },
+        "3": {
+          "name": "punctuation.separator.namespace.js"
+        },
+        "4": {
+          "name": "entity.name.tag.js"
+        },
+        "5": {
+          "name": "support.class.component.js"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.js"
+        }
+      },
+      "contentName": "meta.jsx.children.js",
+      "patterns": [
+        {
+          "include": "#jsx-children"
+        }
+      ]
+    },
+    "jsx-tag-in-expression": {
+      "begin": "(?x)\n  (?<!\\+\\+|--)(?<=[({\\[,?=>:*]|&&|\\|\\||\\?|\\*\\/|^await|[^\\._$[:alnum:]]await|^return|[^\\._$[:alnum:]]return|^default|[^\\._$[:alnum:]]default|^yield|[^\\._$[:alnum:]]yield|^)\\s*\n  (?!<\\s*[_$[:alpha:]][_$[:alnum:]]*((\\s+extends\\s+[^=>])|,)) # look ahead is not type parameter of arrow\n  (?=(<)\\s*(?:([_$[:alpha:]][-_$[:alnum:].]*)(?<!\\.|-)(:))?((?:[a-z][a-z0-9]*|([_$[:alpha:]][-_$[:alnum:].]*))(?<!\\.|-))(?=((<\\s*)|(\\s+))(?!\\?)|\\/?>))",
+      "end": "(?!(<)\\s*(?:([_$[:alpha:]][-_$[:alnum:].]*)(?<!\\.|-)(:))?((?:[a-z][a-z0-9]*|([_$[:alpha:]][-_$[:alnum:].]*))(?<!\\.|-))(?=((<\\s*)|(\\s+))(?!\\?)|\\/?>))",
+      "patterns": [
+        {
+          "include": "#jsx-tag"
+        }
+      ]
+    },
+    "jsx-tag": {
+      "name": "meta.tag.js",
+      "begin": "(?=(<)\\s*(?:([_$[:alpha:]][-_$[:alnum:].]*)(?<!\\.|-)(:))?((?:[a-z][a-z0-9]*|([_$[:alpha:]][-_$[:alnum:].]*))(?<!\\.|-))(?=((<\\s*)|(\\s+))(?!\\?)|\\/?>))",
+      "end": "(/>)|(?:(</)\\s*(?:([_$[:alpha:]][-_$[:alnum:].]*)(?<!\\.|-)(:))?((?:[a-z][a-z0-9]*|([_$[:alpha:]][-_$[:alnum:].]*))(?<!\\.|-))?\\s*(>))",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.end.js"
+        },
+        "2": {
+          "name": "punctuation.definition.tag.begin.js"
+        },
+        "3": {
+          "name": "entity.name.tag.namespace.js"
+        },
+        "4": {
+          "name": "punctuation.separator.namespace.js"
+        },
+        "5": {
+          "name": "entity.name.tag.js"
+        },
+        "6": {
+          "name": "support.class.component.js"
+        },
+        "7": {
+          "name": "punctuation.definition.tag.end.js"
+        }
+      },
+      "patterns": [
+        {
+          "begin": "(<)\\s*(?:([_$[:alpha:]][-_$[:alnum:].]*)(?<!\\.|-)(:))?((?:[a-z][a-z0-9]*|([_$[:alpha:]][-_$[:alnum:].]*))(?<!\\.|-))(?=((<\\s*)|(\\s+))(?!\\?)|\\/?>)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.begin.js"
+            },
+            "2": {
+              "name": "entity.name.tag.namespace.js"
+            },
+            "3": {
+              "name": "punctuation.separator.namespace.js"
+            },
+            "4": {
+              "name": "entity.name.tag.js"
+            },
+            "5": {
+              "name": "support.class.component.js"
+            }
+          },
+          "end": "(?=[/]?>)",
+          "patterns": [
+            {
+              "include": "#comment"
+            },
+            {
+              "include": "#type-arguments"
+            },
+            {
+              "include": "#jsx-tag-attributes"
+            }
+          ]
+        },
+        {
+          "begin": "(>)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.end.js"
+            }
+          },
+          "end": "(?=</)",
+          "contentName": "meta.jsx.children.js",
+          "patterns": [
+            {
+              "include": "#jsx-children"
+            }
+          ]
+        }
+      ]
+    },
+    "jsx-children": {
+      "patterns": [
+        {
+          "include": "#jsx-tag-without-attributes"
+        },
+        {
+          "include": "#jsx-tag"
+        },
+        {
+          "include": "#jsx-evaluated-code"
+        },
+        {
+          "include": "#jsx-entities"
+        }
+      ]
+    },
+    "jsx-evaluated-code": {
+      "contentName": "meta.embedded.expression.js",
+      "begin": "\\{",
+      "end": "\\}",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.embedded.begin.js"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.embedded.end.js"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#expression"
+        }
+      ]
+    },
+    "jsx-entities": {
+      "patterns": [
+        {
+          "name": "constant.character.entity.js",
+          "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.entity.js"
+            },
+            "3": {
+              "name": "punctuation.definition.entity.js"
+            }
+          }
+        },
+        {
+          "name": "invalid.illegal.bad-ampersand.js",
+          "match": "&"
+        }
+      ]
+    },
+    "jsx-tag-attributes": {
+      "name": "meta.tag.attributes.js",
+      "begin": "\\s+",
+      "end": "(?=[/]?>)",
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#jsx-tag-attribute-name"
+        },
+        {
+          "include": "#jsx-tag-attribute-assignment"
+        },
+        {
+          "include": "#jsx-string-double-quoted"
+        },
+        {
+          "include": "#jsx-string-single-quoted"
+        },
+        {
+          "include": "#jsx-evaluated-code"
+        },
+        {
+          "include": "#jsx-tag-attributes-illegal"
+        }
+      ]
+    },
+    "jsx-tag-attribute-name": {
+      "match": "(?x)\n  \\s*\n  (?:([_$[:alpha:]][-_$[:alnum:].]*)(:))?\n  ([_$[:alpha:]][-_$[:alnum:]]*)\n  (?=\\s|=|/?>|/\\*|//)",
+      "captures": {
+        "1": {
+          "name": "entity.other.attribute-name.namespace.js"
+        },
+        "2": {
+          "name": "punctuation.separator.namespace.js"
+        },
+        "3": {
+          "name": "entity.other.attribute-name.js"
+        }
+      }
+    },
+    "jsx-tag-attribute-assignment": {
+      "name": "keyword.operator.assignment.js",
+      "match": "=(?=\\s*(?:'|\"|{|/\\*|//|\\n))"
+    },
+    "jsx-string-double-quoted": {
+      "name": "string.quoted.double.js",
+      "begin": "\"",
+      "end": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.js"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.js"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#jsx-entities"
+        }
+      ]
+    },
+    "jsx-string-single-quoted": {
+      "name": "string.quoted.single.js",
+      "begin": "'",
+      "end": "'",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.js"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.js"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#jsx-entities"
+        }
+      ]
+    },
+    "jsx-tag-attributes-illegal": {
+      "name": "invalid.illegal.attribute.js",
+      "match": "\\S+"
+    }
+  },
   "scopeName": "html-string.injection"
 }
